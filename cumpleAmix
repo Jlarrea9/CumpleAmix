@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Page</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+
+    #countdown {
+      font-size: 2em;
+      margin: 20% 0;
+    }
+
+    #unlock-message, #video-container {
+      display: none;
+      font-size: 1.5em;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<div id="countdown">Countdown: <span id="timer"></span></div>
+<div id="unlock-message">Website Unlocked!</div>
+
+<div id="video-container">
+  <video width="640" height="360" controls>
+    <source src="VIDEO-2024-02-04-10-01-59.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<script>
+  // Set the countdown date to February 10th, 2024, 00:00 AM
+  const countdownDate = new Date("February 10, 2024 00:00:00").getTime();
+
+  // Update the countdown every second
+  const x = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    // Calculate days, hours, minutes, and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the countdown
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+    // If the countdown is over, display the unlock message, video, and hide the countdown
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").style.display = "none";
+      document.getElementById("unlock-message").style.display = "block";
+      document.getElementById("video-container").style.display = "block";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
