@@ -8,7 +8,7 @@
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
-      background-color: #f4f4f4;
+      background-color: #af5eb2;
     }
 
     #countdown {
@@ -25,8 +25,8 @@
 </head>
 <body>
 
-<div id="countdown">Countdown para tu cumple: <span id="timer"></span></div>
-<div id="unlock-message">Feliz cumple amix!!! eres increible espero que la pases lindo te mando un abrazo gigaante </div>
+<div id="countdown">Countdown para cumple de amix: <span id="timer"></span></div>
+<div id="unlock-message">Feliz cumple amix !!!! eres increible espero que la pases lindo y te mando un abrazo gigaaante </div>
 
 <div id="video-container">
   <video width="640" height="360" controls>
@@ -36,19 +36,22 @@
 </div>
 
 <script>
-  // Set the countdown date to 10 seconds from now
-  const countdownDate = new Date().getTime() + 10000; // 10 seconds from now
+  // Set the countdown date to February 10th, 2024, 00:00 AM
+  const countdownDate = new Date("February 10, 2024 00:00:00").getTime();
 
   // Update the countdown every second
   const x = setInterval(function() {
     const now = new Date().getTime();
     const distance = countdownDate - now;
 
-    // Calculate seconds
-    const seconds = Math.floor(distance / 1000);
+    // Calculate days, hours, minutes, and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display the countdown
-    document.getElementById("timer").innerHTML = seconds + "s ";
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
     // If the countdown is over, display the unlock message, video, and hide the countdown
     if (distance < 0) {
