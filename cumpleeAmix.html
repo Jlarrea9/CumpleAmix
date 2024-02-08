@@ -16,52 +16,46 @@
       margin: 20% 0;
     }
 
-    #unlock-message, #video-container {
+    #unlock-message, #video-container, #gift-box {
       display: none;
       font-size: 1.5em;
-      color: green;
+      color: rgb(2, 13, 2);
+    }
+
+    #gift-box {
+      cursor: pointer;
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+    }
+
+    #gift-box img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    #gift-box.opened img {
+      transform: rotateY(180deg);
     }
   </style>
 </head>
 <body>
 
 <div id="countdown">Countdown para cumple de amix: <span id="timer"></span></div>
-<div id="unlock-message">Feliz cumple amix !!!! eres increible espero que la pases lindo y te mando un abrazo gigaaante </div>
+<div id="unlock-message">Feliz cumple amix !!!! eres increíble, espero que la pases lindo y te mando un abrazo gigante</div>
 
-<div id="video-container">
-  <video width="640" height="360" controls>
-    <source src="VIDEO-2024-02-04-10-01-59.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<div id="gift-box" onclick="openGift()">
+  <img src="White-gift.png" alt="Gift Box">
 </div>
 
-<script>
-  // Set the countdown date to February 10th, 2024, 00:00 AM
-  const countdownDate = new Date("February 10, 2024 00:00:00").getTime();
+<div id="video-container">
+    <video width="640" height="360" controls autoplay muted onloadeddata="playVideo()">
+        <source src="VIDEO-2024-02-04-10-01-59.mp4" type="video/mp4">
+      </video>      
 
-  // Update the countdown every second
-  const x = setInterval(function() {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    // Calculate days, hours, minutes, and seconds
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Display the countdown
-    document.getElementById("timer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-    // If the countdown is over, display the unlock message, video, and hide the countdown
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("countdown").style.display = "none";
-      document.getElementById("unlock-message").style.display = "block";
-      document.getElementById("video-container").style.display = "block";
-    }
-  }, 1000);
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
+
